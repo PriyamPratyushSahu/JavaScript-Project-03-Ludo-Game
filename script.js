@@ -13,6 +13,7 @@ const dice = document.querySelector('.dice');
 const btnNewGame = document.querySelector('.btn--new');
 const btnRollDice = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
+const target = 20;
 
 let scores, activePlayer, currentScore, gameStatus;
 
@@ -53,7 +54,7 @@ const holdAction = () => {
         scores[activePlayer] += currentScore;
         document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
 
-        if (scores[activePlayer] >= 10) {
+        if (scores[activePlayer] >= target) {
             gameStatus = false;
             dice.classList.add('hidden');
             document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
@@ -90,5 +91,27 @@ btnRollDice.addEventListener('click', rollDiceAction);
 btnHold.addEventListener('click', holdAction);
 btnNewGame.addEventListener('click', newGameAction);
 
-
-
+/**
+             ******************************** VARIABLE DESCRIPTION ********************************
+       variable                    type             Description                       
+1.      player0                  locator         To alert the window when player is switched           
+2.      player1                  locator         To alert the window when player is switched
+3.      player0Score             locator         To update the total score of Player 1(0)
+4.      player1Score             locator         To update the total score of Player 2(1)
+5.      player0CurrentScore      locator         To update the current score of Player 1(0)
+6.      player1CurrentScore      locator         To update the current score of Player 2(1)
+7.      dice                     locator         To show the dice on the screen matching with diceVal
+8.      btnNewGame               locator         New Game button 
+9.      btnRollDice              locator         Roll Dice button
+10.     btnHold                  locator         Hold button
+11.     scores                   numeric array   holds the score of both the players
+12.     activePlayer             Number          holds the active player number(0,1)
+13.     currentScore             Number          Calculates the current score during the game
+14.     gameStatus               Boolean         Sets to true when game starts and false when player wins
+15.     switchPlayer             function        To switch player when hold is pressed and score is less than target or dice is 1
+16.     rollDiceAction           function        To roll the dice and calculate result
+17.     diceVal                  Number          The random dice value between 1 to 6
+18.     holdAction               function        To execute hold button
+19.     newGameAction            function        To reset all the value to initial value for a fresh/ new game
+20.     target                   number          The winning value, the player need to score to win the game
+ */
